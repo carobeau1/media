@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Import Movies</title>
+  <style>
+    :root{color-scheme:dark;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif}
+    *{box-sizing:border-box}body{margin:0;background:#05070a;color:#f4f5f7}
+    main{width:min(720px,calc(100% - 32px));margin:auto;padding:28px 0 80px}
+    a{color:inherit}.back{text-decoration:none}.back:hover{text-decoration:underline}
+    h1{font-size:38px;margin:36px 0 8px}p{color:#a7a8ae;line-height:1.55}
+    .panel{margin-top:28px;padding:24px;background:#181a1e;border:1px solid #ffffff17;border-radius:18px}
+    label{display:block;font-weight:600;margin-bottom:12px}
+    textarea{display:block;width:100%;min-height:230px;resize:vertical;padding:14px;background:#24272b;color:#fff;border:1px solid #ffffff33;border-radius:10px;font:15px/1.6 ui-monospace,SFMono-Regular,Consolas,monospace}
+    textarea:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #f87171;outline-offset:2px}
+    input[type=file]{display:block;width:100%;padding:12px;background:#24272b;border:1px solid #ffffff33;border-radius:10px;color:#cdd0d6}
+    .or{margin:18px 0;color:#a7a8ae}
+    button{margin-top:18px;padding:12px 22px;background:#dc2626;color:white;border:0;border-radius:10px;font:600 14px Inter,system-ui,sans-serif;cursor:pointer}
+    button:hover{background:#ef4444}button:disabled{opacity:.55;cursor:wait}
+    #progress{margin-top:20px;min-height:22px;color:#e2e3e7}
+    #results{padding:0;list-style:none;margin:16px 0 0;max-height:400px;overflow-y:auto}
+    #results li{padding:9px 0;border-bottom:1px solid #ffffff12;color:#cdd0d6}
+    #results .failure{color:#ffa6ac}#results a{color:#fff;text-decoration:none}#results a:hover{text-decoration:underline}
+  </style>
+</head>
+<body><main>
+  <a class="back" href="/">← Home</a>
+  <h1>Import Movies</h1>
+  <p>Paste up to 10,000 movie IDs, one per line, or upload an .xlsx file with IDs in column A of the first sheet. Existing movies are skipped. You can leave this page once the batch is queued; the footer shows progress across the app.</p>
+  <section class="panel">
+    <label for="ids">Movie IDs</label>
+    <textarea id="ids" spellcheck="false" placeholder="61818&#10;12345&#10;67890"></textarea>
+    <p class="or">Or upload a spreadsheet</p>
+    <label for="spreadsheet">Excel .xlsx file (first sheet, column A)</label>
+    <input id="spreadsheet" type="file" accept=".xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+    <button id="submit" type="button">Import Movies</button>
+    <a href="/" style="display:inline-block;margin-left:14px;color:#cdd0d6">Close</a>
+    <div id="progress" role="status" aria-live="polite"></div>
+    <ul id="results" aria-label="Import results"></ul>
+  </section>
+</main>
+<script>
+(() => {
+  const input=document.getElementById('ids'),file=document.getElementById('spreadsheet'),button=document.getElementById('submit');
+  const progress=document.getElementById('progress'),results=document.getElementById('results');
+  let activeJob=0;
+  const show=job=>{
+    if(job.state==='idle')return;
+    if(activeJob!==job.job_id){activeJob=job.job_id;results.replaceChildren();}
+    progress.textContent=`${job.state==='complete'?'Complete':job.state==='queued'?'Queued':'Importing'} · ${job.checked}/${job.total} checked · ${job.added} added · ${job.existing} already present · ${job.failed} failed${job.current?' · ID '+job.current:''}`;
+    results.replaceChildren();
+    for(const item of job.results||[]){
+      const row=document.createElement('li');
+      if(item.status==='failed'){row.className='failure';row.textContent=`${item.id} · ${item.error}`;}
+      else{const link=document.createElement('a');link.href=`/movie/${item.id}`;link.textContent=`${item.id} · ${item.title}`;
+        row.append(link,document.createTextNode(item.status==='added'?' · Added':' · Already in database'));}
+      results.append(row);
+    }
+  };
+  async function poll(){try{const response=await fetch('/api/profile/movie-import',{cache:'no-store'});if(response.ok)show(await response.json());}catch(_) {}}
+  poll();setInterval(poll,3000);
+  button.addEventListener('click',async()=>{
+    const spreadsheet=file.files[0],lines=input.value.split(/\r?\n/).map(value=>value.trim()).filter(Boolean);
+    if(spreadsheet&&lines.length){progress.textContent='Choose either a spreadsheet or pasted IDs for this batch.';return;}
+    if(!spreadsheet){
+      const invalid=lines.filter(value=>!/^\d{1,15}$/.test(value));
+      if(invalid.length){progress.textContent=`Invalid movie ID: ${invalid[0]}`;return;}
+      if(!lines.length){progress.textContent='Paste IDs or select an .xlsx file.';return;}
+      if(lines.length>10000){progress.textContent='Import up to 10,000 movie IDs at a time.';return;}
+    }else if(!spreadsheet.name.toLowerCase().endsWith('.xlsx')||spreadsheet.size>5*1024*1024){
+      progress.textContent='Select an .xlsx file of 5 MB or less.';return;
+    }
+    button.disabled=true;
+    try{
+      const headers={'X-CSRF-Token':[[ import_csrf|tojson ]]};
+      let body;
+      if(spreadsheet){body=new FormData();body.append('file',spreadsheet);}
+      else{headers['Content-Type']='application/json';body=JSON.stringify({ids:[...new Set(lines)]});}
+      const response=await fetch('/api/profile/movie-import',{method:'POST',headers,body});
+      const job=await response.json();if(!response.ok)throw Error(job.error||`HTTP ${response.status}`);
+      show(job);input.value='';file.value='';
+    }catch(error){progress.textContent=error.message;
+    }finally{button.disabled=false;}
+  });
+})();
+</script></body></html>

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>[[ person.name ]] | Movy</title>
+  <style>
+    :root{color-scheme:dark;--bg:#05070a;--surface:#0d1015;--line:rgba(255,255,255,.09);--muted:rgba(238,241,246,.62);--primary:#8b5cf6}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:#eef1f6;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif}
+    a{color:inherit;text-decoration:none}.shell{width:min(1280px,calc(100% - 40px));margin:auto;padding:28px 0 72px}
+    .nav{display:flex;gap:10px;margin-bottom:34px}.nav a{display:grid;place-items:center;width:42px;height:42px;border:1px solid var(--line);border-radius:50%;background:rgba(18,21,27,.82);font-size:21px}.nav a:hover{border-color:rgba(255,255,255,.25);background:#171b22}
+    .profile{display:flex;align-items:center;gap:22px;margin-bottom:38px}.portrait{width:112px;height:112px;object-fit:cover;border-radius:50%;background:#151922;border:1px solid var(--line)}
+    h1{font-size:clamp(30px,5vw,52px);line-height:1.05;margin:0 0 9px}.count{color:var(--muted);font-size:14px}.heading{font-size:21px;margin:0 0 18px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:25px 16px}.card{min-width:0}.poster{aspect-ratio:2/3;width:100%;object-fit:cover;border-radius:10px;background:#11151b;border:1px solid var(--line);transition:transform .2s,border-color .2s}.card:hover .poster{transform:translateY(-3px);border-color:rgba(255,255,255,.25)}
+    .title{font-size:13px;font-weight:600;line-height:1.3;margin:10px 2px 5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.meta,.role{color:var(--muted);font-size:11px;margin:0 2px;line-height:1.4}.role{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:4px}
+    .placeholder{display:grid;place-items:center;color:rgba(255,255,255,.22);font-size:42px}
+    @media(max-width:600px){.shell{width:min(100% - 24px,1280px);padding-top:18px}.profile{gap:16px}.portrait{width:86px;height:86px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 12px}}
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <nav class="nav" aria-label="Page navigation">
+      <a href="javascript:history.back()" aria-label="Go back" title="Back">‹</a>
+      <a href="/" aria-label="Home" title="Home">⌂</a>
+    </nav>
+    <header class="profile">
+      {% if person.image %}<img class="portrait" src="[[ person.image ]]" alt="[[ person.name ]]">{% else %}<div class="portrait placeholder" aria-hidden="true">●</div>{% endif %}
+      <div><h1>[[ person.name ]]</h1><div class="count">[[ titles|length ]] locally available title[[ "" if titles|length == 1 else "s" ]]</div></div>
+    </header>
+    <h2 class="heading">Movies &amp; TV</h2>
+    <section class="grid">
+      {% for item in titles %}
+      <a class="card" href="[[ item.url ]]">
+        {% if item.poster %}<img class="poster" src="[[ item.poster ]]" alt="[[ item.title ]]" loading="lazy">{% else %}<div class="poster placeholder" aria-hidden="true">▶</div>{% endif %}
+        <div class="title">[[ item.title ]]</div>
+        <div class="meta">[[ item.year ]] {% if item.year and item.rating %}·{% endif %} [[ item.rating ]] {% if item.rating %}★{% endif %} · [[ item.type_label ]]</div>
+        {% if item.characters %}<div class="role">as [[ item.characters ]]</div>{% endif %}
+      </a>
+      {% endfor %}
+    </section>
+  </main>
+</body>
+</html>

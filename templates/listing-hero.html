@@ -1,0 +1,31 @@
+{% if hero_titles %}
+<div class="HomeBanner-module-scss-module__eAYNsa__heroRoot"><section class="HomeBanner-module-scss-module__eAYNsa__billboard " aria-label="Featured [[ listing_label ]]" aria-roledescription="carousel"><div class="HomeBanner-module-scss-module__eAYNsa__track">
+{% for feature in hero_titles %}
+<div class="HomeBanner-module-scss-module__eAYNsa__slideLayer{% if loop.first %} HomeBanner-module-scss-module__eAYNsa__slideCurrent{% endif %}">
+  <div class="heroFade-module-scss-module__qCmkoa__backdropWrap">
+    {% if feature.backdrop %}<img class="HomeBanner-module-scss-module__eAYNsa__backdropImg" src="[[ feature.backdrop ]]" alt="[[ feature.title ]]" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;opacity:1">{% endif %}
+    <div class="heroFade-module-scss-module__qCmkoa__vignette"></div>
+  </div>
+  <div class="HomeBanner-module-scss-module__eAYNsa__content"><div class="layout-container w-full"><div class="HomeBanner-module-scss-module__eAYNsa__stack text-left"><div>
+    <div class="HeroCopy-module-scss-module__Y82t7W__titleWrap">
+      {% if feature.logo %}<div class="h-[72px] md:h-[96px] w-[240px] md:w-[340px] max-w-full"><img class="h-full w-full object-contain object-left-bottom drop-shadow-[0_8px_24px_rgba(0,0,0,0.55)]" src="[[ feature.logo ]]" alt="[[ feature.title ]]"></div>
+      {% else %}<h2 class="hero-detail-title">[[ feature.title ]]</h2>{% endif %}
+    </div>
+    <div class="HeroCopy-module-scss-module__Y82t7W__metaCollapse"><div class="HeroCopy-module-scss-module__Y82t7W__metaCollapseInner">
+      <div class="HeroCopy-module-scss-module__Y82t7W__attributes"><div class="HeroCopy-module-scss-module__Y82t7W__facts">
+        <span class="HeroCopy-module-scss-module__Y82t7W__fact"><span class="HeroCopy-module-scss-module__Y82t7W__score"><svg aria-hidden="true" class="lucide lucide-star HeroCopy-module-scss-module__Y82t7W__scoreStar" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><span class="tabular-nums">[[ feature.rating ]]</span></span></span>
+        {% for fact in [feature.year, feature.runtime] %}{% if fact %}<span class="HeroCopy-module-scss-module__Y82t7W__fact"><span aria-hidden="true" class="HeroCopy-module-scss-module__Y82t7W__factDot">·</span><span class="tabular-nums">[[ fact ]]</span></span>{% endif %}{% endfor %}
+      </div>{% if feature.certification %}<span aria-hidden="true" class="HeroCopy-module-scss-module__Y82t7W__factDot">·</span><div class="HeroCopy-module-scss-module__Y82t7W__badges"><span class="ageRatingBadge-module-scss-module__MpHirG__badge ageRatingBadge-module-scss-module__MpHirG__sm" title="[[ feature.certification ]]">[[ feature.certification ]]</span></div>{% endif %}</div>
+      {% if feature.genres %}<p class="HeroCopy-module-scss-module__Y82t7W__genres">{% for genre in feature.genres %}<span class="HeroCopy-module-scss-module__Y82t7W__genre">{% if not loop.first %}<span aria-hidden="true" class="HeroCopy-module-scss-module__Y82t7W__genreDot">·</span>{% endif %}[[ genre ]]</span>{% endfor %}</p>{% endif %}
+      <p class="HeroCopy-module-scss-module__Y82t7W__description">[[ feature.description ]]</p>
+    </div></div>
+  </div><div class="HomeBanner-module-scss-module__eAYNsa__ctaRow flex-wrap min-h-10 md:min-h-11">
+    <a href="/[[ feature.kind ]]/[[ feature.id ]]?play=true" class="flex items-center justify-center font-medium tracking-tight transition-all duration-200 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-neo-bg h-10 px-4 gap-2 rounded-full md:h-11 md:gap-3 md:px-7 text-[#05070a] bg-text-hi hover:bg-white active:scale-[0.98]"><svg class="w-5 h-5 md:w-[22px] md:h-[22px] text-[#05070a]" fill="currentColor" viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg><span>Play</span></a>
+    <a href="/[[ feature.kind ]]/[[ feature.id ]]" class="control-3d flex items-center justify-center gap-2 h-10 px-4 md:h-11 md:gap-3 md:px-6 rounded-full font-medium tracking-tight text-text-hi hover:border-white/15 active:scale-[0.98] transition-all duration-200 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-neo-bg text-[12px] md:text-[13px]"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 11v6m0-10h.01"/></svg><span>More info</span></a>
+  </div></div></div></div>
+</div>
+{% endfor %}
+</div>
+
+</section><div class="heroFade-module-scss-module__qCmkoa__seamFade" aria-hidden="true"></div><div class="HomeBanner-module-scss-module__eAYNsa__bottomChrome"><div class="layout-container w-full"><div class="HomeBanner-module-scss-module__eAYNsa__bottomBar"></div></div></div></div>
+{% endif %}

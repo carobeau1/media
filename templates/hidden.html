@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Hidden titles</title>
+<style>
+body{margin:0;background:#101114;color:#f5f5f5;font:15px/1.5 system-ui,sans-serif}main{max-width:800px;margin:36px auto;padding:0 20px}a{color:#ddd}h1{font-size:28px}.item{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 16px;margin:8px 0;background:#222429;border-radius:12px}.item small{display:block;color:#aaa;text-transform:capitalize}button{padding:9px 13px;border:1px solid #555;border-radius:8px;background:#333;color:#fff;cursor:pointer}button:hover{background:#484848}button:disabled{opacity:.5}
+</style></head><body><main><a href="/">← Home</a><h1>Hidden titles</h1><p>These titles are excluded from browsing, search and recommendations. Restore one to show it again.</p><div id="hidden-list">
+{% for item in titles %}<div class="item"><div><strong>{{ item.title }}</strong><small>{{ 'Show' if item.media_type == 'tv' else 'Movie' }} · {{ item.media_id }}</small></div><button type="button" data-type="{{ item.media_type }}" data-id="{{ item.media_id }}">Restore</button></div>{% else %}<p>No hidden titles.</p>{% endfor %}
+</div></main><script>
+document.getElementById('hidden-list').addEventListener('click', async e => {
+ const button=e.target.closest('button[data-type][data-id]');if(!button)return;
+ button.disabled=true;
+ try{const res=await fetch('/api/media/'+button.dataset.type+'/'+button.dataset.id+'/unhide',
+  {method:'POST',headers:{'Content-Type':'application/json'},body:'{}'});
+  if(!res.ok)throw Error('Could not restore this title');
+  button.closest('.item').remove();
+  if(!document.querySelector('.item'))document.getElementById('hidden-list').innerHTML='<p>No hidden titles.</p>';
+ }catch(error){alert(error.message);button.disabled=false}
+});
+</script></body></html>

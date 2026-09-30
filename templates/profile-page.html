@@ -1,0 +1,5 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{{ title }}</title>
+<style>body{margin:0;background:#101114;color:#f5f5f5;font:15px/1.5 system-ui,sans-serif}main{max-width:820px;margin:38px auto;padding:0 24px}a{color:#eee}h1{font-size:30px;margin:28px 0 8px}p{color:#aaa}#profile-local-list{margin-top:25px;background:#1c1d21;border-radius:14px;overflow:hidden}</style></head><body>
+<main><a href="/">← Home</a><h1>{{ title }}</h1><p>{{ description }}</p>{% if list_kind %}<div id="profile-local-list" data-kind="{{ list_kind }}"></div>{% endif %}{% if title == 'Favourites' %}<div id="favourite-list">Loading favourites…</div><script src="/static/favourites-page.js" defer></script>{% endif %}</main>
+</body></html>
+<style>.favourite-list-item{display:flex;align-items:center;gap:15px;padding:10px;border-bottom:1px solid #ffffff20;text-decoration:none}.favourite-list-item img{width:48px;height:72px;object-fit:cover;border-radius:6px}.favourite-list-item:hover{background:#ffffff10}</style>

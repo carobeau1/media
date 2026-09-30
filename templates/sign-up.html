@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>[[ 'Login' if login_mode else 'Sign Up' ]]</title>
+<style>
+:root{color-scheme:dark;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:#05070a;color:#f5f6f8}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at 82% 14%,#4a162039,transparent 45%),radial-gradient(ellipse at 15% 84%,#17243155,transparent 49%)}
+a{color:inherit;text-decoration:none}a:hover{text-decoration:underline}
+.topbar{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;height:72px;padding:0 clamp(20px,4vw,60px);border-bottom:1px solid #ffffff0b}.topbar a{font-size:13px;color:#ffffffb3}.topbar svg{width:18px;height:18px;vertical-align:middle;margin-right:7px}
+main{position:relative;z-index:1;min-height:calc(100vh - 72px);display:grid;place-items:center;padding:40px 20px 70px}.content{width:min(100%,790px)}
+h1{margin:0;font-size:clamp(27px,3vw,36px);line-height:1.15;font-weight:700;letter-spacing:-.035em} .intro{margin:11px 0 29px;color:#9a9ca3;font-size:14px}
+.panel{display:grid;grid-template-columns:minmax(0,1fr) 1px minmax(0,1fr);gap:32px;align-items:stretch}.feature{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:288px;padding:24px;color:#d8d9de}.feature-icon{display:grid;place-items:center;width:90px;height:90px;border:1px solid #ffffff16;border-radius:22px;background:linear-gradient(135deg,#ffffff0c,#ffffff05);box-shadow:0 12px 40px #0005;margin-bottom:26px}.feature-icon svg{width:44px;height:44px;stroke:#e6545d}.feature h2{margin:0 0 8px;font-size:18px;font-weight:650}.feature p{margin:0;max-width:270px;color:#94969e;font-size:13px;line-height:1.6}.divider{position:relative;background:#ffffff14}.divider span{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:#05070a;padding:12px 0;color:#777b85;font-size:11px;font-weight:700}
+form{display:flex;flex-direction:column;justify-content:center;gap:12px}.field{position:relative}.field input{display:block;width:100%;height:44px;padding:0 44px;border:1px solid #ffffff14;border-radius:12px;background:#ffffff08;color:#f5f6f8;font:13px inherit;outline:none}.field input:focus{border-color:#ffffff45;background:#ffffff0c}.field input::placeholder{color:#858892}.field-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:#ffffff60;pointer-events:none}.field-icon svg{width:16px;height:16px}.reveal{position:absolute;right:9px;top:50%;transform:translateY(-50%);border:0;background:transparent;color:#ffffff80;padding:7px;cursor:pointer;font-size:12px}
+.keep-signed-in{display:flex;align-items:center;gap:9px;color:#c5c7ce;font-size:13px;cursor:pointer}.keep-signed-in input{width:16px;height:16px;margin:0;accent-color:#dc2626}
+.submit{height:44px;border:0;border-radius:12px;background:#fff;color:#0b0f14;font-size:13px;font-weight:700;cursor:pointer;margin-top:5px}.submit:hover{background:#e8e8ec}.switch{text-align:center;color:#93969d;font-size:13px;margin:5px 0 0}.switch a{font-weight:650;color:#f3f5f8}.error{border:1px solid #e562766b;background:#dc262622;color:#ffc6ce;border-radius:10px;padding:10px 12px;font-size:13px}
+@media(max-width:680px){.topbar{height:62px}main{min-height:calc(100vh - 62px);align-items:start;padding-top:62px}.content{max-width:380px}.panel{display:block}.feature,.divider{display:none}.intro{margin-bottom:30px}}
+</style>
+</head>
+<body>
+<header class="topbar"><a href="/" aria-label="Back to home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m15 18-6-6 6-6"/></svg>Back to home</a><a href="[[ '/sign-up' if login_mode else '/login' ]]">[[ 'Sign up' if login_mode else 'Login' ]]</a></header>
+<main><div class="content"><h1>[[ 'Welcome back' if login_mode else 'Create your Movy account' ]]</h1><p class="intro">[[ 'Enter your details to sign in' if login_mode else 'Fill in your details to get started' ]]</p>
+<div class="panel"><div class="feature"><div class="feature-icon"><svg viewBox="0 0 48 48" fill="none" stroke-width="2"><rect x="8" y="12" width="32" height="27" rx="5"/><path d="M13 12V8m11 4V8m11 4V8M8 21h32"/><path d="m21 25 9 5-9 5z"/></svg></div><h2>Movies and shows, your way</h2><p>Keep your account and favorite titles together in one place.</p></div><div class="divider"><span>OR</span></div>
+<form method="post" action="[[ '/login' if login_mode else '/sign-up' ]]" autocomplete="on">
+<input type="hidden" name="csrf" value="[[ csrf ]]">
+{% if error %}<div class="error" role="alert">[[ error ]]</div>{% endif %}
+{% if not login_mode %}<label class="field"><span class="field-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span><input name="name" type="text" placeholder="Name" aria-label="Name" maxlength="80" autocomplete="name" required></label>
+<label class="field"><span class="field-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg></span><input name="email" type="email" placeholder="Email" aria-label="Email" maxlength="254" autocomplete="email" required></label>
+{% else %}<label class="field"><span class="field-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span><input name="email" type="email" placeholder="Email" aria-label="Email" autocomplete="username" required></label>{% endif %}
+<label class="field"><span class="field-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span><input id="password" name="password" type="password" placeholder="Password" aria-label="Password" minlength="8" maxlength="128" autocomplete="[[ 'current-password' if login_mode else 'new-password' ]]" required><button class="reveal" type="button" aria-label="Show password" onclick="const input=document.getElementById('password');input.type=input.type==='password'?'text':'password';this.textContent=input.type==='password'?'Show':'Hide'">Show</button></label>
+{% if login_mode %}<label class="keep-signed-in"><input type="checkbox" name="keep_signed_in" value="1"{% if keep_signed_in %} checked{% endif %}>Keep signed in</label>{% endif %}
+<button class="submit" type="submit">[[ 'Login' if login_mode else 'Sign up' ]]</button><p class="switch">[[ 'New here?' if login_mode else 'Already have an account?' ]] <a href="[[ '/sign-up' if login_mode else '/login' ]]">[[ 'Sign up' if login_mode else 'Login' ]]</a></p>
+</form></div></div></main>
+</body></html>
