@@ -1,0 +1,5 @@
+:root{--home-poster-width:200px}
+.home-poster-size-item{width:min(var(--home-poster-width),calc(100vw - 64px))!important;max-width:min(var(--home-poster-width),calc(100vw - 64px))!important;flex:0 0 min(var(--home-poster-width),calc(100vw - 64px))!important}
+.recently-played-card{flex:0 0 min(var(--home-poster-width),calc(100vw - 64px))!important;max-width:min(var(--home-poster-width),calc(100vw - 64px))!important}
+.recently-played-rail>.favourite-tile{flex:0 0 min(var(--home-poster-width),calc(100vw - 64px))!important;width:min(var(--home-poster-width),calc(100vw - 64px))!important;max-width:min(var(--home-poster-width),calc(100vw - 64px))!important}
+.recently-played-rail>.favourite-tile>.recently-played-card{display:flex;width:100%;max-width:100%!important}

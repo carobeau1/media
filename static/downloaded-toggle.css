@@ -1,0 +1,33 @@
+.downloaded-view-toggle{position:fixed;top:17px;left:clamp(14px,3vw,48px);z-index:2147483200;display:flex;gap:3px;padding:4px;border:1px solid #ffffff29;border-radius:999px;background:#17191ce8;box-shadow:0 8px 24px #0009;pointer-events:auto;backdrop-filter:blur(14px)}
+.downloaded-view-toggle button{border:0;border-radius:999px;background:transparent;color:#c3c5ca;padding:8px 12px;font:600 12px/1 Inter,system-ui,sans-serif;white-space:nowrap;cursor:pointer}
+.downloaded-view-toggle button[aria-pressed="true"]{background:#dc2626;color:#fff;box-shadow:0 3px 10px #0006}
+.downloaded-view-toggle button:hover:not([aria-pressed="true"]){background:#ffffff16;color:#fff}
+.downloaded-view-toggle button:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.media-delete-button{border:1px solid #dc262680!important;background:#351a20!important;color:#fff!important;cursor:pointer;white-space:nowrap}
+.media-delete-button:hover{background:#622027!important}
+.media-delete-floating{position:fixed;right:18px;bottom:43px;z-index:2147483001;padding:8px 12px;border-radius:8px}
+.backend-search-shell.is-open{z-index:2147483500!important}
+header nav.header-search-cluster,header .media-header-actions{background:rgba(26,28,31,var(--menu-opacity,.90))!important;border:1px solid #ffffff25;border-radius:12px;box-shadow:0 8px 24px #0007;backdrop-filter:blur(14px)}
+header nav.header-search-cluster{display:flex;align-items:center;gap:3px}
+header nav.header-search-cluster .media-nav-back{display:inline-grid;place-items:center;flex:none;width:32px;height:32px;border:0;border-radius:8px;background:transparent;color:#ffffffcf;cursor:pointer;position:relative;z-index:2}
+header nav.header-search-cluster .media-nav-back:hover,header nav.header-search-cluster .media-nav-back:focus-visible{background:#ffffff1b;color:#fff}
+header nav.header-search-cluster .media-nav-back:focus-visible{outline:2px solid #fff}
+header .media-header-actions{display:flex;align-items:center;justify-content:flex-end;gap:12px;min-width:0;margin-left:auto;position:relative;z-index:10}
+header .media-header-actions .downloaded-view-toggle{position:static;flex:none;background:transparent;border:0;box-shadow:none;backdrop-filter:none}
+header .media-header-actions>button[aria-label="Search"]{flex:none}
+header nav.header-search-cluster{flex:none}
+header nav.header-search-cluster>div[style*="width"]{width:auto!important}
+header nav.header-search-cluster .media-nav-equal-width{width:92px;min-width:92px;justify-content:center}
+header .media-header-actions .profile-trigger{margin-right:5px}
+.media-shared-header{position:fixed;inset:0 0 auto;z-index:2147483100;pointer-events:none;padding:16px clamp(14px,3vw,48px);background:linear-gradient(#05070ad9,transparent)}
+.media-shared-header-inner{display:flex;align-items:center;gap:12px;max-width:1440px;margin:auto;pointer-events:auto}
+.media-shared-header nav.header-search-cluster{padding:4px}
+.media-shared-header nav.header-search-cluster>a{display:inline-flex;align-items:center;justify-content:center;height:32px;padding:0 12px;border-radius:8px;color:#ffffffc7;text-decoration:none;font:600 13px system-ui,sans-serif;white-space:nowrap}
+.media-shared-header nav.header-search-cluster>a:hover,.media-shared-header nav.header-search-cluster>a[aria-current="page"]{color:#fff;background:#ffffff20}
+.media-shared-header .media-header-actions{padding:1px 5px}
+.media-shared-header .media-header-actions>button,.media-shared-header .profile-trigger>button{display:grid;place-items:center;flex:none;width:32px;height:32px;padding:0;border:0;border-radius:8px;background:transparent;color:#ffffffc7;cursor:pointer}
+.media-shared-header .media-header-actions>button:hover,.media-shared-header .profile-trigger>button:hover{background:#ffffff1b;color:#fff}
+body:has(.media-shared-header) main{padding-top:max(96px, 7vw)}
+body:has(.media-shared-header) [class*="buttonTopLeftGoBack-module"][class*="__cluster"]{display:none!important}
+@media(max-width:1050px){header .media-header-actions{gap:7px}header .media-header-actions .downloaded-view-toggle button{padding:7px 8px;font-size:11px}header nav.header-search-cluster .media-nav-equal-width{width:84px;min-width:84px}header nav.header-search-cluster a[href="/anime"]{display:none!important}}
+@media(max-width:767px){header nav.header-search-cluster{display:flex!important}header .media-header-actions .downloaded-view-toggle button:first-child{font-size:0}header .media-header-actions .downloaded-view-toggle button:first-child::after{content:'All';font-size:11px}header .media-header-actions .profile-username{max-width:80px}header .media-header-actions{margin-left:0}header.fixed .layout-container>div:has(> nav.header-search-cluster),.media-shared-header-inner{display:flex;flex-wrap:wrap;justify-content:space-between;height:auto!important;gap:5px;padding-top:6px}header nav.header-search-cluster{order:2;max-width:100%;overflow:hidden}header .media-header-actions{order:1;margin-left:auto}body:has(.media-shared-header) main{padding-top:132px}}

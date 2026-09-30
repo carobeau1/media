@@ -1,0 +1,16 @@
+/* Keep every catalogue image in portrait poster proportions. */
+.home-poster-tile .movieCard-module-scss-module__Xn2B8q__movieCardImage,
+.home-poster-tile .movieCard-module-scss-module__Xn2B8q__posterWrap{aspect-ratio:2/3!important;height:auto!important;overflow:hidden}
+.home-poster-tile img.home-title-poster{display:block!important;width:100%!important;height:100%!important;aspect-ratio:2/3;object-fit:cover!important}
+.top10-module-scss-module__JVDh5a__featureCard .top10-module-scss-module__JVDh5a__wallpaper{display:none!important}
+.top10-module-scss-module__JVDh5a__featureCard .top10-module-scss-module__JVDh5a__featureRow{display:block!important}
+.top10-module-scss-module__JVDh5a__featureCard .top10-module-scss-module__JVDh5a__poster{width:100%!important;height:auto!important;aspect-ratio:2/3!important}
+.top10-module-scss-module__JVDh5a__featureCard .top10-module-scss-module__JVDh5a__info{padding:8px 3px!important}
+.top10-module-scss-module__JVDh5a__featureCard .top10-module-scss-module__JVDh5a__cast,
+.top10-module-scss-module__JVDh5a__featureCard .top10-module-scss-module__JVDh5a__plot,
+.top10-module-scss-module__JVDh5a__featureCard .top10-module-scss-module__JVDh5a__trailerBtn{display:none!important}
+/* Keep home catalogue rows closer together at every viewport width. */
+main .layout-container.flex.flex-col[class*="gap-12"]{row-gap:28px!important}
+@media(min-width:768px){main .layout-container.flex.flex-col[class*="gap-12"]{row-gap:36px!important}}
+main .layout-container.flex.flex-col[class*="mt-12"]{margin-top:28px!important}
+@media(min-width:768px){main .layout-container.flex.flex-col[class*="mt-12"]{margin-top:34px!important}}

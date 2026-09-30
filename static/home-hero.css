@@ -1,0 +1,26 @@
+.hero-dynamic-nav{position:absolute;bottom:30px;right:max(24px,5vw);z-index:12}
+.HomeBanner-module-scss-module__eAYNsa__slideLayer:not(.HomeBanner-module-scss-module__eAYNsa__slideCurrent):not(.hero-slide-outgoing){display:none!important}
+.HomeBanner-module-scss-module__eAYNsa__slideLayer.HomeBanner-module-scss-module__eAYNsa__slideCurrent,.HomeBanner-module-scss-module__eAYNsa__slideLayer.hero-slide-outgoing{display:block!important}
+.HomeBanner-module-scss-module__eAYNsa__slideLayer.HomeBanner-module-scss-module__eAYNsa__slideCurrent:not(.hero-slide-incoming):not(.hero-slide-outgoing){opacity:1!important;transform:none!important}
+.HomeBanner-module-scss-module__eAYNsa__slideLayer.hero-slide-outgoing{z-index:3!important;pointer-events:none}
+.HomeBanner-module-scss-module__eAYNsa__slideLayer.hero-slide-incoming{z-index:4!important}
+[data-hero-transition="slide"] .hero-slide-outgoing{animation:hero-slide-away .56s ease-in-out both}
+[data-hero-transition="slide"] .hero-slide-incoming{animation:hero-slide-arrive .56s ease-in-out both}
+[data-hero-transition="slide"][data-hero-direction="backward"] .hero-slide-outgoing{animation-name:hero-slide-away-back}
+[data-hero-transition="slide"][data-hero-direction="backward"] .hero-slide-incoming{animation-name:hero-slide-arrive-back}
+[data-hero-transition="fade"] .hero-slide-outgoing{animation:hero-fade-away .16s ease-in both}
+[data-hero-transition="fade"] .hero-slide-incoming{animation:hero-fade-arrive .18s ease-out both}
+[data-hero-transition="dissolve"] .hero-slide-outgoing{animation:hero-dissolve-away .75s linear both}
+[data-hero-transition="dissolve"] .hero-slide-incoming{animation:hero-dissolve-arrive .75s linear both}
+@keyframes hero-slide-away{from{transform:translateX(0)}to{transform:translateX(-100%)}}
+@keyframes hero-slide-arrive{from{transform:translateX(100%)}to{transform:translateX(0)}}
+@keyframes hero-slide-away-back{from{transform:translateX(0)}to{transform:translateX(100%)}}
+@keyframes hero-slide-arrive-back{from{transform:translateX(-100%)}to{transform:translateX(0)}}
+@keyframes hero-fade-away{from{opacity:1}to{opacity:0}}
+@keyframes hero-fade-arrive{from{opacity:0}to{opacity:1}}
+@keyframes hero-dissolve-away{from{opacity:1}to{opacity:0}}
+@keyframes hero-dissolve-arrive{from{opacity:0}to{opacity:1}}
+@media(prefers-reduced-motion:reduce){[data-hero-transition] .hero-slide-outgoing,[data-hero-transition] .hero-slide-incoming{animation:none!important}}
+
+.hero-detail-title{margin:0;color:#fff;font-size:clamp(30px,4vw,56px);font-weight:800;letter-spacing:-.035em;line-height:1.08;text-shadow:0 2px 18px #0009}
+.HomeBanner-module-scss-module__eAYNsa__ctaRow a{text-decoration:none}

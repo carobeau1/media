@@ -1,0 +1,11 @@
+html:has(.fullscreen-panels),body:has(.fullscreen-panels){height:100%;overflow:hidden!important}
+.fullscreen-panels{position:fixed!important;inset:0!important;height:100dvh!important;overflow:hidden!important;padding:0!important;max-width:none!important}
+.fullscreen-panels>.fullscreen-panel-hero{position:absolute!important;inset:0!important;height:100%!important;z-index:2;transition:opacity .65s ease,visibility 0s .65s}
+.fullscreen-panel-hero .HomeBanner-module-scss-module__eAYNsa__billboard{height:100dvh!important;min-height:0!important}
+.fullscreen-panels>.fullscreen-panel-content{position:absolute;inset:0;overflow:auto;overscroll-behavior:contain;padding:88px 0 42px;opacity:0;visibility:hidden;transition:opacity .65s ease,visibility 0s .65s}
+.fullscreen-panels.panel-rows>.fullscreen-panel-hero{opacity:0;visibility:hidden;pointer-events:none}
+.fullscreen-panels.panel-rows>.fullscreen-panel-content{opacity:1;visibility:visible;transition:opacity .65s ease}
+.fullscreen-panel-down,.fullscreen-panel-up{position:absolute;z-index:5;left:50%;transform:translateX(-50%);width:44px;height:44px;border:1px solid #ffffff80;border-radius:50%;background:#121317aa;color:white;font-size:26px;cursor:pointer;backdrop-filter:blur(8px)}
+.fullscreen-panel-down{bottom:24px}.fullscreen-panel-up{position:sticky;top:0;margin:0 auto -44px;display:block}
+.fullscreen-panel-down:focus-visible,.fullscreen-panel-up:focus-visible{outline:2px solid white;outline-offset:3px}
+@media(prefers-reduced-motion:reduce){.fullscreen-panels>.fullscreen-panel-hero,.fullscreen-panels>.fullscreen-panel-content{transition:none!important}}

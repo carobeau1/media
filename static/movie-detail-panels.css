@@ -1,0 +1,38 @@
+/* Movie detail: the title and its cast/recommendations are full-screen panels. */
+.movie-detail-panels > .HomeBanner-module-scss-module__eAYNsa__heroRoot,
+.movie-detail-panels > .HomeBanner-module-scss-module__eAYNsa__heroRoot > .HomeBanner-module-scss-module__eAYNsa__billboard{height:100vh!important;height:100dvh!important;min-height:0!important}
+body:not(.movie-detail-grid-mode):has(.movie-detail-panels){overflow:hidden!important}
+body:not(.movie-detail-grid-mode) .movie-detail-panels > .movie-detail-content{display:none!important}
+body.movie-detail-grid-mode .movie-detail-panels > .HomeBanner-module-scss-module__eAYNsa__heroRoot{position:fixed;inset:0;z-index:30;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .7s ease,visibility 0s .7s}
+body.movie-detail-grid-mode .movie-detail-panels > .movie-detail-content{animation:movie-detail-panel-in .7s ease both;min-height:100dvh;padding-top:90px}
+@keyframes movie-detail-panel-in{from{opacity:0}to{opacity:1}}
+.movie-detail-down,.movie-detail-up{display:grid;place-items:center;z-index:55;width:42px;height:42px;border:1px solid #ffffff70;border-radius:999px;background:#121317aa;color:#fff;font-size:26px;line-height:1;cursor:pointer;backdrop-filter:blur(8px)}
+.movie-detail-down{position:absolute;bottom:22px;left:50%;transform:translateX(-50%)}
+.movie-detail-up{position:fixed;top:85px;left:50%;transform:translateX(-50%);display:none}
+body.movie-detail-grid-mode .movie-detail-up{display:grid}
+.movie-detail-down:hover,.movie-detail-up:hover,.movie-detail-down:focus-visible,.movie-detail-up:focus-visible{background:#ffffff35;outline:2px solid #ffffffa0;outline-offset:3px}
+@media(min-width:768px){.movie-detail-up{top:96px}body.movie-detail-grid-mode .movie-detail-panels > .movie-detail-content{padding-top:102px}}
+@media(prefers-reduced-motion:reduce){body.movie-detail-grid-mode .movie-detail-panels > .movie-detail-content{animation:none}body.movie-detail-grid-mode .movie-detail-panels > .HomeBanner-module-scss-module__eAYNsa__heroRoot{transition:none}}
+@media(pointer:coarse){body:not(.movie-detail-grid-mode) .movie-detail-panels > .HomeBanner-module-scss-module__eAYNsa__heroRoot{touch-action:none}}
+/* Keep both detail sections inside the viewport, including the cast section. */
+html:has(.movie-detail-panels),body:has(.movie-detail-panels){height:100%;overflow:hidden!important}
+.movie-detail-panels{position:fixed!important;inset:0!important;height:100dvh!important;overflow:hidden!important}
+.movie-detail-panels>.HomeBanner-module-scss-module__eAYNsa__heroRoot{position:absolute!important;inset:0!important}
+body.movie-detail-grid-mode .movie-detail-panels>.movie-detail-content{position:absolute;inset:0;overflow:auto;overscroll-behavior:contain;height:100dvh;min-height:0!important}
+/* The template has hero and title rows as siblings. Hide rows before JS initializes. */
+body:not(.movie-detail-grid-mode) .page-enter > .relative.w-full > .HomeBanner-module-scss-module__eAYNsa__heroRoot + .layout-container{
+  visibility:hidden!important;opacity:0!important;pointer-events:none!important;
+}
+body:not(.movie-detail-grid-mode) .page-enter > .relative.w-full > .HomeBanner-module-scss-module__eAYNsa__heroRoot{
+  position:fixed!important;inset:0!important;z-index:30!important;
+}
+body.movie-detail-grid-mode .page-enter > .relative.w-full > .HomeBanner-module-scss-module__eAYNsa__heroRoot + .layout-container{
+  visibility:visible!important;opacity:1!important;pointer-events:auto!important;
+}
+
+.movie-detail-content[hidden]{display:none!important}
+.movie-source-panel{position:absolute;right:clamp(18px,4vw,70px);bottom:28px;z-index:60;display:flex;flex-direction:column;gap:5px;max-width:min(440px,45vw);padding:12px 15px;border:1px solid #ffffff35;border-radius:12px;background:#090b10c9;color:#fff;backdrop-filter:blur(12px);font-size:12px}
+.movie-source-panel label{display:flex;align-items:center;gap:10px;font-weight:600}
+.movie-source-panel select{background:#24272b;color:white;border:1px solid #ffffff60;border-radius:6px;padding:5px;cursor:pointer}
+.movie-source-url{color:#d6d8df;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-decoration:underline;text-underline-offset:2px}
+@media(max-width:650px){.movie-source-panel{right:10px;bottom:80px;max-width:calc(100vw - 20px)}}

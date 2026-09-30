@@ -1,0 +1,12 @@
+.movie-download-status{position:fixed;right:18px;bottom:86px;z-index:2147483002;width:min(340px,calc(100vw - 36px));border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:14px 16px;background:rgba(25,27,31,.97);color:#fff;box-shadow:0 12px 32px rgba(0,0,0,.55);font:13px/1.4 Inter,system-ui,sans-serif}
+.movie-download-status[hidden],.movie-download-progress[hidden]{display:none}
+.movie-download-heading{font-weight:650;margin-bottom:5px}
+.movie-download-message{color:rgba(255,255,255,.7);overflow-wrap:anywhere;max-height:72px;overflow:auto}
+.movie-download-progress{height:6px;border-radius:9px;overflow:hidden;background:rgba(255,255,255,.14);margin:9px 0}
+.movie-download-progress span{display:block;height:100%;background:#dc2626;transition:width .35s ease}
+button[aria-label="Download movie to server"]:disabled{opacity:.72;cursor:wait}
+.movie-file-indicator{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;margin-left:8px;color:#b8c0ce;vertical-align:middle}
+.movie-file-indicator[data-complete="true"]{color:#7edaa6}
+.movie-file-indicator svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.movie-media-details{display:inline-flex;align-items:center;max-width:min(100%,720px);margin-left:10px;color:#e7e8ee;font:500 12px/1.4 Inter,system-ui,sans-serif;white-space:normal}
+.movie-media-details[hidden]{display:none!important}

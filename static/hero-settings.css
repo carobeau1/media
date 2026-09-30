@@ -1,0 +1,19 @@
+.hero-settings{margin:28px 0 40px;padding:24px;background:#181a1e;border:1px solid #ffffff17;border-radius:18px}
+.hero-settings h2{margin:0 0 8px;font-size:25px}.hero-settings h3{margin:0 0 17px;font-size:18px}
+.hero-transition-setting{display:flex;align-items:center;gap:12px;margin:18px 0 22px;color:#e5e5e8;font-size:14px}
+.hero-transition-setting select{padding:9px 12px;border:1px solid #ffffff32;border-radius:9px;background:#16181b;color:#fff;font:inherit}
+.hero-display-settings{display:flex;flex-wrap:wrap;gap:18px 24px;margin:18px 0 24px}
+.hero-display-settings label{display:flex;flex-direction:column;gap:9px;min-width:155px;color:#e5e5e8;font-size:14px}
+.hero-display-settings select{padding:9px 12px;border:1px solid #ffffff32;border-radius:9px;background:#16181b;color:#fff;font:inherit}
+.hero-display-settings input[type=range]{width:min(220px,100%);accent-color:#dc2626;cursor:pointer}
+.hero-display-settings output{color:#f87171;font-size:13px}
+.hero-settings-cards{display:grid;gap:18px}.hero-settings-card{padding:20px;border:1px solid #ffffff20;border-radius:14px;background:#222428}
+.hero-settings-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.hero-settings-fields label{min-width:0;font-size:13px;color:#e5e5e8}
+.hero-settings-fields input,.hero-settings-fields select{display:block;width:100%;max-width:none;margin-top:8px;padding:10px;background:#16181b;color:#fff;border:1px solid #ffffff32;border-radius:9px;font:inherit}
+.hero-settings-genres{margin-top:18px;color:#ececf0}.hero-settings-genres summary{cursor:pointer;padding:10px 0}
+.hero-settings-genre-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.hero-settings-genre-list label{display:inline-flex;align-items:center;gap:7px;margin:0;padding:7px 10px;border:1px solid #ffffff25;border-radius:999px;background:#181a1e;font-size:12px;cursor:pointer}
+.hero-settings-genre-list input{accent-color:#dc2626}.hero-settings-save{margin-top:24px;padding:12px 18px;border:0;border-radius:9px;background:#dc2626;color:#fff;font:600 14px Inter,system-ui,sans-serif;cursor:pointer}
+.hero-settings-save:disabled{opacity:.55}.hero-settings-status{margin-top:12px;min-height:20px;color:#e5e5e8;font-size:13px}
+@media(max-width:560px){.hero-settings-fields{grid-template-columns:1fr}}

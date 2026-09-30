@@ -1,0 +1,5 @@
+.favourite-tile{position:relative;min-width:0}
+.favourite-heart{position:absolute;top:8px;right:8px;z-index:20;display:grid;place-items:center;width:34px;height:34px;border:1px solid #ffffff50;border-radius:50%;background:#101114c9;color:#fff;font-size:21px;line-height:1;cursor:pointer;box-shadow:0 2px 9px #0009}
+.favourite-heart[aria-pressed="true"]{color:#f44758;border-color:#f44758a8}
+.favourite-heart:hover{background:#25252ae8}
+.favourite-detail-heart{position:fixed;right:18px;bottom:93px;z-index:100}
